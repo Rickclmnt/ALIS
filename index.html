@@ -54,7 +54,7 @@
     {
       "@type": "Offer",
       "name": "Starter — Small Practice",
-      "price": "10000",
+      "price": "13500",
       "priceCurrency": "USD",
       "priceValidUntil": "2027-12-31",
       "description": "Full self-hosted ALIS platform for up to 10 attorneys, billed annually."
@@ -62,7 +62,7 @@
     {
       "@type": "Offer",
       "name": "Growth — Growing Firm",
-      "price": "28000",
+      "price": "38000",
       "priceCurrency": "USD",
       "priceValidUntil": "2027-12-31",
       "description": "ALIS for 11–30 attorneys with priority support and implementation assistance, billed annually."
@@ -70,7 +70,7 @@
     {
       "@type": "Offer",
       "name": "Firm — Established Firm",
-      "price": "65000",
+      "price": "88000",
       "priceCurrency": "USD",
       "priceValidUntil": "2027-12-31",
       "description": "ALIS for 31–75 attorneys with dedicated onboarding and firm-wide playbooks, billed annually."
@@ -78,7 +78,7 @@
     {
       "@type": "Offer",
       "name": "Enterprise — Custom Deployment",
-      "price": "100000",
+      "price": "125000",
       "priceCurrency": "USD",
       "priceValidUntil": "2027-12-31",
       "description": "Custom-scoped ALIS deployment for firms with 75+ attorneys."
@@ -317,6 +317,20 @@ h2{
 }
 .check span:last-child{font-family:var(--mono);font-size:10px;color:var(--green)}
 
+.pricing-toggle{
+  display:flex;gap:0;margin-bottom:34px;border:1px solid var(--line);width:fit-content;
+}
+.pricing-toggle button{
+  border:0;background:var(--paper);color:var(--muted);
+  padding:10px 20px;font:11px var(--mono);letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;border-right:1px solid var(--line);
+  transition:.15s;
+}
+.pricing-toggle button:last-child{border-right:0}
+.pricing-toggle button:hover{color:var(--ink);background:var(--soft)}
+.pricing-toggle button.active{background:var(--ink);color:var(--white)}
+.pricing-region-note{font:11px var(--mono);color:var(--muted);margin:-14px 0 30px}
+
 .pricing-grid{
   display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
   background:var(--line);border:1px solid var(--line);
@@ -333,6 +347,7 @@ h2{
 .plan-price{font-family:var(--serif);font-size:38px}
 .plan-price span{font:11px var(--mono);color:var(--muted);margin-left:4px}
 .pricing-card.featured .plan-price span{color:#a8a59b}
+.plan-price .price-amount{font-family:var(--serif);font-size:38px;color:inherit;margin-left:0}
 .plan-attorneys{
   font:10px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;
   padding-bottom:22px;margin:8px 0 22px;border-bottom:1px solid var(--line);
@@ -765,11 +780,21 @@ footer{border-top:1px solid var(--line);padding:30px 0}
       </div>
     </div>
 
+    <div class="pricing-toggle reveal" role="group" aria-label="Select pricing currency">
+      <button type="button" class="currency-btn active" data-currency="usd">USD</button>
+      <button type="button" class="currency-btn" data-currency="gbp">GBP</button>
+      <button type="button" class="currency-btn" data-currency="ngn">NGN</button>
+    </div>
+    <p class="pricing-region-note" id="pricing-region-note">Pricing for US and international firms, billed annually.</p>
+
     <div class="pricing-grid reveal">
-      <div class="pricing-card">
+      <div class="pricing-card"
+           data-usd-price="$13,500" data-usd-period="/year" data-usd-eff="As low as $112 / attorney / month"
+           data-gbp-price="£10,700" data-gbp-period="/year" data-gbp-eff="As low as £89 / attorney / month"
+           data-ngn-price="₦3,000,000" data-ngn-period="/year" data-ngn-eff="As low as ₦25,000 / attorney / month">
         <span class="plan-tag">STARTER</span>
         <h3 class="plan-title">Small Practice</h3>
-        <div class="plan-price">$10,000<span>/year</span></div>
+        <div class="plan-price"><span class="price-amount">$13,500</span><span class="price-period">/year</span></div>
         <div class="plan-attorneys">Up to 10 attorneys</div>
         <ul class="plan-features">
           <li>Full ALIS platform, self-hosted</li>
@@ -777,14 +802,17 @@ footer{border-top:1px solid var(--line);padding:30px 0}
           <li>Email support</li>
           <li>Quarterly production releases + security patches</li>
         </ul>
-        <div class="plan-effective">As low as $83 / attorney / month</div>
+        <div class="plan-effective">As low as $112 / attorney / month</div>
         <a class="plan-cta" href="#contact">Start a pilot →</a>
       </div>
 
-      <div class="pricing-card">
+      <div class="pricing-card"
+           data-usd-price="$38,000" data-usd-period="/year" data-usd-eff="As low as $106 / attorney / month"
+           data-gbp-price="£30,000" data-gbp-period="/year" data-gbp-eff="As low as £83 / attorney / month"
+           data-ngn-price="₦7,500,000" data-ngn-period="/year" data-ngn-eff="As low as ₦20,800 / attorney / month">
         <span class="plan-tag">GROWTH</span>
         <h3 class="plan-title">Growing Firm</h3>
-        <div class="plan-price">$28,000<span>/year</span></div>
+        <div class="plan-price"><span class="price-amount">$38,000</span><span class="price-period">/year</span></div>
         <div class="plan-attorneys">11–30 attorneys</div>
         <ul class="plan-features">
           <li>Everything in Starter</li>
@@ -794,14 +822,17 @@ footer{border-top:1px solid var(--line);padding:30px 0}
           <li>Access to beta testing program</li>
           <li>Priority consideration for feature requests</li>
         </ul>
-        <div class="plan-effective">As low as $78 / attorney / month</div>
+        <div class="plan-effective">As low as $106 / attorney / month</div>
         <a class="plan-cta" href="#contact">Start a pilot →</a>
       </div>
 
-      <div class="pricing-card featured">
+      <div class="pricing-card featured"
+           data-usd-price="$88,000" data-usd-period="/year" data-usd-eff="As low as $98 / attorney / month"
+           data-gbp-price="£70,000" data-gbp-period="/year" data-gbp-eff="As low as £78 / attorney / month"
+           data-ngn-price="₦17,000,000" data-ngn-period="/year" data-ngn-eff="As low as ₦18,900 / attorney / month">
         <span class="plan-tag">FIRM</span>
         <h3 class="plan-title">Established Firm</h3>
-        <div class="plan-price">$65,000<span>/year</span></div>
+        <div class="plan-price"><span class="price-amount">$88,000</span><span class="price-period">/year</span></div>
         <div class="plan-attorneys">31–75 attorneys</div>
         <ul class="plan-features">
           <li>Everything in Growth</li>
@@ -811,14 +842,17 @@ footer{border-top:1px solid var(--line);padding:30px 0}
           <li>Early access to major platform capabilities</li>
           <li>Private beta programs with direct feedback sessions</li>
         </ul>
-        <div class="plan-effective">As low as $72 / attorney / month</div>
+        <div class="plan-effective">As low as $98 / attorney / month</div>
         <a class="plan-cta" href="#contact">Start a pilot →</a>
       </div>
 
-      <div class="pricing-card">
+      <div class="pricing-card"
+           data-usd-price="$125,000" data-usd-period="+ /year" data-usd-eff="Scoped to deployment size"
+           data-gbp-price="£99,000" data-gbp-period="+ /year" data-gbp-eff="Scoped to deployment size"
+           data-ngn-price="₦25,000,000" data-ngn-period="+ /year" data-ngn-eff="Scoped to deployment size">
         <span class="plan-tag">ENTERPRISE</span>
         <h3 class="plan-title">Custom Deployment</h3>
-        <div class="plan-price">$100,000<span>+ /year</span></div>
+        <div class="plan-price"><span class="price-amount">$125,000</span><span class="price-period">+ /year</span></div>
         <div class="plan-attorneys">75+ attorneys</div>
         <ul class="plan-features">
           <li>Everything in Firm</li>
@@ -836,6 +870,7 @@ footer{border-top:1px solid var(--line);padding:30px 0}
     <p class="pricing-note">
       Implementation and deployment — infrastructure, data migration, firm
       playbooks — are scoped and quoted separately from the annual license.
+      GBP and NGN pricing is indicative and payable via arrangement — contact us to confirm current rates and payment method.
     </p>
 
     <div class="pricing-statement reveal">
@@ -902,6 +937,34 @@ document.querySelector('.menu').addEventListener('click', ()=>{
     nav.style.flexDirection='column';
     nav.style.borderBottom='1px solid var(--line)';
   }
+});
+
+// Currency toggle for pricing section
+const currencyNotes = {
+  usd: "Pricing for US and international firms, billed annually.",
+  gbp: "Indicative pricing for UK-based firms, billed annually.",
+  ngn: "Indicative pricing for Nigeria-based firms, billed annually."
+};
+
+document.querySelectorAll('.currency-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const currency = btn.dataset.currency;
+
+    document.querySelectorAll('.currency-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.pricing-card').forEach(card=>{
+      const price = card.dataset[currency + 'Price'];
+      const period = card.dataset[currency + 'Period'];
+      const eff = card.dataset[currency + 'Eff'];
+      card.querySelector('.price-amount').textContent = price;
+      card.querySelector('.price-period').textContent = period;
+      card.querySelector('.plan-effective').textContent = eff;
+    });
+
+    const note = document.getElementById('pricing-region-note');
+    note.textContent = currencyNotes[currency];
+  });
 });
 </script>
 </body>
